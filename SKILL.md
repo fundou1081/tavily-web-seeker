@@ -1,7 +1,7 @@
 ---
 name: tavily-web-seeker
 description: Enhanced Tavily search with intelligent intent recognition, source preferences, critical source validation, and offline report generation.
-version: 1.0.0
+version: 1.1.0
 metadata:
   { "openclaw": { "emoji": "🎯", "requires": { "config": ["plugins.entries.tavily.config"] } } }
 ---

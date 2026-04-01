@@ -1,0 +1,19 @@
+
+// Parse search operators v1.1.0
+function parseOperators(query) {
+  const operators = { original: query, site: [], exclude: [], orTerms: [] };
+  const siteMatch = query.match(/site:([^\s]+)/g);
+  if (siteMatch) {
+    operators.site = siteMatch.map(m => m.replace("site:", ""));
+    operators.original = query.replace(/site:[^\s]+/g, "").trim();
+  }
+  const excludeMatch = query.match(/-(\w+)/g);
+  if (excludeMatch) {
+    operators.exclude = excludeMatch.map(m => m.replace("-", ""));
+  }
+  if (query.toLowerCase().includes(" or ")) {
+    const parts = query.split(/\s+OR\s+/i);
+    operators.orTerms = parts.map(p => p.trim()).filter(p => p);
+  }
+  return operators;
+}
